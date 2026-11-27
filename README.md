@@ -72,7 +72,12 @@ curl -X POST localhost:3000/reservas -H 'Content-Type: application/json' \
    Assim o servidor só lê `erro.status`, sem precisar de um `if` para cada erro.
 
 3. **Funcional.** O que ganhamos com `preco.ts` puro? Como vocês testariam ele sem subir o servidor?
-4. **Se fosse em outro paradigma.** Escolham uma das partes e expliquem como ficaria em outro
+
+   **Resposta**: Com o preco.ts puro, ganhamos reutilização, organização e facilidade de manutenção, pois as funções não dependem do servidor nem de estados externos, tornando seus resultados mais previsíveis.
+
+   Podemos testá-lo diretamente, chamando as funções com diferentes valores e verificando os resultados esperados, sem precisar subir o servidor. Assim, validamos os cálculos e identificamos erros de forma rápida e isolada.
+   
+5. **Se fosse em outro paradigma.** Escolham uma das partes e expliquem como ficaria em outro
    paradigma, e se ficaria melhor ou pior.
 
    **Resposta**: Escolhemos o `Evento` no paradigma funcional. Em vez de mudar o objeto, o `reservar` devolveria
@@ -82,7 +87,7 @@ curl -X POST localhost:3000/reservas -H 'Content-Type: application/json' \
    mesmo evento atualizado, então alguém ainda teria que guardar e trocar o "evento atual" a cada
    venda. No OO, o próprio objeto guarda o estado e protege as poltronas.
 
-5. **Concorrente × paralelo.** O Node roda o JavaScript numa linha só: os pedidos de vocês são
+6. **Concorrente × paralelo.** O Node roda o JavaScript numa linha só: os pedidos de vocês são
    concorrentes, não paralelos. O que mudaria se a venda rodasse em vários núcleos ao mesmo tempo?
 
    **Resposta**: Hoje só um pedido roda por vez, e eles só se alternam no `await`. Por isso conferir e marcar a
